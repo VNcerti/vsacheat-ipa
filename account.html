@@ -12,6 +12,9 @@
     <meta name="keywords" content="iOS apps, tải ứng dụng, iPhone, iPad, tài khoản, đăng ký, đăng nhập">
     <meta name="author" content="XSpace Store">
     <meta name="robots" content="index, follow">
+    <meta property="og:title" content="XSpace Store - Tài Khoản">
+    <meta property="og:description" content="Quản lý tài khoản XSpace Store">
+    <meta property="og:type" content="website">
     
     <!-- Sử dụng CSS chính từ index.html -->
     <link rel="stylesheet" href="css/styles.css">
@@ -20,7 +23,7 @@
     <script src="js/utils.js"></script>
 
     <style>
-        /* Page-specific styles */
+        /* Page-specific styles - Updated with website version */
         :root {
             --primary:#2076f3; --primary-dark:#0cabeb; --primary-light:#e1f0ff;
             --success:#10b981; --danger:#ef4444; --warning:#f59e0b;
@@ -58,11 +61,11 @@
 
         /* Main Content */
         .main-content {
-            padding-top: 0;
+            padding-top: 60px;
             min-height: calc(100vh - 120px);
         }
 
-        /* Welcome Banner */
+        /* Welcome Banner - New from website version */
         .welcome-banner {
             text-align: center;
             padding: 15px 16px 10px;
@@ -100,7 +103,6 @@
             font-size: 24px; font-weight: 800; color: var(--text-primary);
             margin-bottom: 8px; line-height: 1.25;
             letter-spacing: -0.3px;
-            margin-top: 40px;
             animation: fade-up 0.6s cubic-bezier(0.22,1,0.36,1) both;
         }
         .wb-heading .wb-accent {
@@ -230,7 +232,7 @@
         .consent-text a { color: var(--primary); text-decoration: none; }
         .consent-text a:hover { text-decoration: underline; }
 
-        /* CAPTCHA WIDGET */
+        /* CAPTCHA WIDGET - New from website */
         .captcha-group {
             margin: 14px 0;
             display: none;
@@ -344,7 +346,7 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* DASHBOARD (logged in) */
+        /* DASHBOARD (logged in) - New from website */
         .dashboard { display: none; max-width: 520px; margin: 0 auto; }
         .dashboard.active { display: block; }
 
@@ -352,7 +354,6 @@
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
             border-radius: 18px; padding: 24px 20px 20px;
             text-align: center; margin-bottom: 14px;
-            margin-top: 40px;
             position: relative; overflow: hidden;
             box-shadow: 0 8px 28px rgba(32,118,243,0.28);
         }
@@ -371,20 +372,26 @@
             background: rgba(255,255,255,0.06);
         }
         .hero-avatar {
-            width: 68px; height: 68px; border-radius: 50%;
+            width: 68px; height: 68px;
+            border-radius: 50%;
             background: rgba(255,255,255,0.25);
             border: 3px solid rgba(255,255,255,0.5);
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin: 0 auto 12px;
             backdrop-filter: blur(4px);
-            position: relative; z-index: 1;
+            position: relative;
+            z-index: 1;
             overflow: hidden;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
         }
         .hero-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
         }
         .hero-name {
             font-size: 20px; font-weight: 700; color: #fff;
@@ -484,14 +491,13 @@
             display: flex;
             align-items: center;
             gap: 4px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
         }
 
         .expiry-status {
             font-size: 11px;
             font-weight: 500;
             color: var(--text-secondary);
+            margin-left: -2px;
         }
         .expiry-status.overdue {
             color: var(--danger);
@@ -547,6 +553,7 @@
         .action-btn.logout { background: var(--danger); color: #fff; border-color: transparent; }
         .action-btn.logout:hover { box-shadow: 0 4px 14px rgba(239,68,68,0.35); }
 
+        /* Last Refresh Time */
         .last-refresh {
             margin-top: 12px;
             padding-top: 12px;
@@ -603,7 +610,19 @@
         .quick-loading.active { display:block; }
         .quick-loading-spinner { width:32px; height:32px; border:3px solid var(--border); border-top-color:var(--primary); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 12px; }
 
-        /* SMART ALERTS */
+        /* Prevent zoom on input focus */
+        input, select, textarea {
+            font-size: 16px !important;
+            touch-action: manipulation;
+        }
+        
+        /* Disable text size adjustment */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+        
+        /* SMART ALERTS - New from website */
         .alert-overlay {
             position: fixed;
             top: 0;
@@ -857,7 +876,7 @@
             .action-btn { padding: 10px 10px; font-size: 11px; }
             .hero-card { padding: 20px 16px 18px; }
             .hero-name { font-size: 18px; }
-            .hero-avatar { width: 60px; height: 60px; }
+            .hero-avatar { width: 60px; height: 60px; font-size: 24px; }
             .change-password-card { padding: 20px; margin: 0 8px; }
             .card-header { padding: 12px 14px; }
             .info-rows { padding: 0 14px; }
@@ -888,10 +907,235 @@
             .smart-alert { max-width: 290px; }
             .action-grid { grid-template-columns: 1fr; }
         }
+        
+        /* ===== BOTTOM NAVIGATION - ĐỒNG BỘ VỚI PAYMENT ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--background);
+            border-top: 1px solid var(--border);
+            padding: 8px 0 var(--safe-area-inset-bottom);
+            z-index: 1000;
+            height: var(--nav-height);
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+            flex: 1;
+            border-radius: 8px;
+            position: relative;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            top : 42px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+            margin-bottom: 6px;
+            margin-top : -3.4px;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-item.active .nav-icon {
+            color: var(--primary);
+        }
+
+        .nav-label {
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 480px) {
+            .nav-icon {
+                font-size: 20px;
+            }
+            .nav-label {
+                font-size: 11px;
+            }
+            .nav-item.active::after {
+                width: 4px;
+                height: 4px;
+                bottom: 6px;
+            }
+        }
+
+        /* Floating Navigation Styles - Cho header back */
+        .floating-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            pointer-events: none;
+            padding: 12px 16px;
+            padding-bottom: max(12px, env(safe-area-inset-bottom));
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .nav-pill {
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 6px;
+            padding: 6px;
+            background: rgba(28, 28, 30, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 100px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: fit-content;
+            max-width: min(480px, calc(100vw - 32px));
+            min-width: 320px;
+        }
+
+        [data-theme="light"] .nav-pill {
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-pill-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            border-radius: 100px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex: 0 0 auto;
+            min-width: 48px;
+            min-height: 48px;
+            overflow: hidden;
+            cursor: pointer;
+            background: transparent;
+            white-space: nowrap;
+            gap: 0;
+        }
+
+        [data-theme="light"] .nav-pill-item {
+            color: rgba(0, 0, 0, 0.55);
+        }
+
+        .nav-pill-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            width: 24px;
+            height: 24px;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex-shrink: 0;
+        }
+
+        .nav-pill-label {
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0;
+            width: 0;
+            max-width: 0;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            margin-left: 0;
+            transform: translateX(-4px);
+        }
+
+        .nav-pill-item.active {
+            background: rgba(255, 255, 255, 0.12);
+            color: #007AFF;
+            padding: 8px 18px;
+            gap: 8px;
+            flex: 0 1 auto;
+        }
+
+        [data-theme="light"] .nav-pill-item.active {
+            background: rgba(0, 0, 0, 0.06);
+            color: #007AFF;
+        }
+
+        .nav-pill-item.active .nav-pill-label {
+            opacity: 1;
+            width: auto;
+            max-width: 100px;
+            margin-left: -2px;
+            transform: translateX(0);
+        }
+
+        .nav-pill-item.active .nav-pill-icon {
+            transform: scale(1.05);
+            color: #007AFF;
+        }
+
+        .nav-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            opacity: 0;
+            pointer-events: none;
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+        }
+
+        .nav-ripple.active {
+            animation: nav-ripple-animation 0.4s ease-out forwards;
+        }
+
+        @keyframes nav-ripple-animation {
+            0% { transform: scale(0); opacity: 0.5; }
+            100% { transform: scale(2); opacity: 0; }
+        }
     </style>
 </head>
 <body>
-    <!-- Header - GIỐNG Y HỆT INFO.HTML VÀ APP-DETAIL.HTML -->
+    <!-- Header - GIỐNG Y HỆT CÁC TRANG WKWEBVIEW KHÁC -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -921,19 +1165,19 @@
         <div class="alert-header free">
             <div class="alert-icon"><i class="fas fa-gem"></i></div>
             <div class="alert-text">
-                <h3 class="alert-title">Thông tin gói nâng cao</h3>
-                <p class="alert-subtitle">Mở rộng quyền truy cập thư viện ứng dụng</p>
+                <h3 class="alert-title">Trải nghiệm VIP đang chờ!</h3>
+                <p class="alert-subtitle">Mở khóa kho ứng dụng không giới hạn</p>
             </div>
         </div>
         <div class="alert-content">
-            <p class="alert-message">Bạn đang dùng <span class="alert-highlight">Gói cơ bản</span>. Xem chi tiết gói nâng cao để:</p>
+            <p class="alert-message">Bạn đang dùng <span class="alert-highlight">tài khoản Miễn phí</span>. Nâng cấp ngay để:</p>
             <div class="benefits-list">
-                <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Truy cập nhiều ứng dụng trong hệ thống</span></div>
-                <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Trải nghiệm ổn định và tối ưu hơn</span></div>
+                <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Tải không giới hạn mọi ứng dụng & game</span></div>
+                <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Tốc độ siêu nhanh, không quảng cáo</span></div>
             </div>
             <div class="discount-badge free"><i class="fas fa-tag"></i><span>✨ Gói Lite chỉ từ 29.000đ - Dùng thử 7 ngày</span></div>
             <div class="alert-actions">
-                <button class="alert-btn primary" onclick="window.location.href='payment.html'"><i class="fas fa-crown"></i> Xem chi tiết</button>
+                <button class="alert-btn primary" onclick="window.location.href='payment.html'"><i class="fas fa-crown"></i> Nâng cấp</button>
                 <button class="alert-btn close" onclick="closeAlert('freeAccountAlert')"><i class="fas fa-times"></i></button>
             </div>
         </div>
@@ -944,19 +1188,19 @@
             <div class="alert-icon"><i class="fas fa-seedling"></i></div>
             <div class="alert-text">
                 <h3 class="alert-title">Bạn đang dùng gói Lite!</h3>
-                <p class="alert-subtitle">7 ngày trải nghiệm gói nâng cao sắp kết thúc</p>
+                <p class="alert-subtitle">7 ngày trải nghiệm VIP sắp kết thúc</p>
             </div>
         </div>
         <div class="alert-content">
-            <p class="alert-message">Xem chi tiết các gói để tiếp tục trải nghiệm:</p>
+            <p class="alert-message">Nâng cấp lên gói cao hơn để tiếp tục tận hưởng:</p>
             <div class="benefits-list">
-                <div class="benefit-item"><i class="fas fa-star"></i><span>Gói Dùng thử: 59.000đ/30 ngày</span></div>
-                <div class="benefit-item"><i class="fas fa-crown"></i><span>Gói Cơ bản: 129.000đ/90 ngày</span></div>
-                <div class="benefit-item"><i class="fas fa-gem"></i><span>Gói Plus: 219.000đ/180 ngày</span></div>
+                <div class="benefit-item"><i class="fas fa-star"></i><span>Gói Trial: 59.000đ/30 ngày - Tiết kiệm 44%</span></div>
+                <div class="benefit-item"><i class="fas fa-crown"></i><span>Gói Basic: 129.000đ/90 ngày - Tiết kiệm 27%</span></div>
+                <div class="benefit-item"><i class="fas fa-gem"></i><span>Gói Plus: 219.000đ/180 ngày - Tiết kiệm 38%</span></div>
             </div>
-            <div class="discount-badge lite"><i class="fas fa-gift"></i><span>Cập nhật gói hôm nay để có nhiều lợi ích hơn</span></div>
+            <div class="discount-badge lite"><i class="fas fa-gift"></i><span>Ưu đãi đặc biệt khi nâng cấp hôm nay</span></div>
             <div class="alert-actions">
-                <button class="alert-btn primary" onclick="window.location.href='payment.html'"><i class="fas fa-sync-alt"></i> Xem chi tiết</button>
+                <button class="alert-btn primary" onclick="window.location.href='payment.html'"><i class="fas fa-sync-alt"></i> Nâng cấp ngay</button>
                 <button class="alert-btn close" onclick="closeAlert('liteAccountAlert')"><i class="fas fa-times"></i></button>
             </div>
         </div>
@@ -966,19 +1210,19 @@
         <div class="alert-header upcoming">
             <div class="alert-icon"><i class="fas fa-hourglass-half"></i></div>
             <div class="alert-text">
-                <h3 class="alert-title">Gói nâng cao sắp hết hạn!</h3>
-                <p class="alert-subtitle">Cập nhật trạng thái gói để không bị gián đoạn</p>
+                <h3 class="alert-title">VIP sắp hết hạn!</h3>
+                <p class="alert-subtitle">Gia hạn ngay để không bị gián đoạn</p>
             </div>
         </div>
         <div class="alert-content">
-            <p class="alert-message" id="vipUpcomingMessage">Tài khoản gói nâng cao của bạn sẽ hết hạn trong 7 ngày tới.</p>
+            <p class="alert-message" id="vipUpcomingMessage">Tài khoản VIP của bạn sẽ hết hạn trong 7 ngày tới.</p>
             <div class="benefits-list">
-                <div class="benefit-item"><i class="fas fa-bolt" style="color:var(--warning)"></i><span>Tiếp tục truy cập nhiều ứng dụng</span></div>
-                <div class="benefit-item"><i class="fas fa-bolt" style="color:var(--warning)"></i><span>Giữ nguyên các tính năng hiện tại</span></div>
+                <div class="benefit-item"><i class="fas fa-bolt" style="color:var(--warning)"></i><span>Tiếp tục tải không giới hạn</span></div>
+                <div class="benefit-item"><i class="fas fa-bolt" style="color:var(--warning)"></i><span>Giữ nguyên tính năng cao cấp</span></div>
             </div>
-            <div class="discount-badge upcoming"><i class="fas fa-gift"></i><span>Thông tin cập nhật gói</span></div>
+            <div class="discount-badge upcoming"><i class="fas fa-gift"></i><span>Ưu đãi giảm giá khi gia hạn</span></div>
             <div class="alert-actions">
-                <button class="alert-btn primary" onclick="window.location.href='payment.html'"><i class="fas fa-sync-alt"></i> Cập nhật</button>
+                <button class="alert-btn primary" onclick="window.location.href='payment.html'"><i class="fas fa-sync-alt"></i> Gia hạn</button>
                 <button class="alert-btn close" onclick="closeAlert('vipUpcomingAlert')"><i class="fas fa-times"></i></button>
             </div>
         </div>
@@ -988,19 +1232,19 @@
         <div class="alert-header expired">
             <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
             <div class="alert-text">
-                <h3 class="alert-title">Gói nâng cao đã hết hạn!</h3>
-                <p class="alert-subtitle">Cập nhật trạng thái gói để lấy lại quyền lợi</p>
+                <h3 class="alert-title">VIP đã hết hạn!</h3>
+                <p class="alert-subtitle">Gia hạn ngay để lấy lại quyền lợi</p>
             </div>
         </div>
         <div class="alert-content">
-            <p class="alert-message" id="vipExpiredMessage">Tài khoản gói nâng cao của bạn đã hết hạn 30 ngày.</p>
+            <p class="alert-message" id="vipExpiredMessage">Tài khoản VIP của bạn đã hết hạn 30 ngày.</p>
             <div class="benefits-list">
-                <div class="benefit-item"><i class="fas fa-bolt" style="color:var(--warning)"></i><span>Khôi phục truy cập ứng dụng</span></div>
-                <div class="benefit-item"><i class="fas fa-bolt" style="color:var(--warning)"></i><span>Lấy lại tất cả tính năng của gói</span></div>
+                <div class="benefit-item"><i class="fas fa-bolt" style="color:var(--warning)"></i><span>Khôi phục tải không giới hạn</span></div>
+                <div class="benefit-item"><i class="fas fa-bolt" style="color:var(--warning)"></i><span>Lấy lại tất cả tính năng VIP</span></div>
             </div>
-            <div class="discount-badge expired"><i class="fas fa-gift"></i><span>Thông tin cập nhật gói</span></div>
+            <div class="discount-badge expired"><i class="fas fa-gift"></i><span>Ưu đãi giảm giá khi gia hạn</span></div>
             <div class="alert-actions">
-                <button class="alert-btn primary" onclick="window.location.href='payment.html'"><i class="fas fa-sync-alt"></i> Cập nhật</button>
+                <button class="alert-btn primary" onclick="window.location.href='payment.html'"><i class="fas fa-sync-alt"></i> Gia hạn</button>
                 <button class="alert-btn close" onclick="closeAlert('vipExpiredAlert')"><i class="fas fa-times"></i></button>
             </div>
         </div>
@@ -1028,12 +1272,12 @@
             <div class="auth-section" id="authSection">
                 <!-- Welcome Banner -->
                 <div class="welcome-banner" id="welcomeSection">
-                    <h2 class="wb-heading">Khám phá ứng dụng <span class="wb-accent">VSA</span></h2>
-                    <p class="wb-sub">Hàng nghìn ứng dụng &amp; game iOS trong một nền tảng — an toàn, minh bạch và luôn cập nhật.</p>
+                    <h2 class="wb-heading">Kho ứng dụng <span class="wb-accent">XSpace Store</span></h2>
+                    <p class="wb-sub">Hàng nghìn ứng dụng & game iOS chỉ trong một nơi — miễn phí, an toàn và luôn cập nhật mới nhất.</p>
                     <div class="wb-badges">
                         <span class="wb-badge"><i class="fas fa-shield-alt"></i> Bảo mật cao</span>
-                        <span class="wb-badge"><i class="fas fa-bolt"></i> Truy cập nhanh</span>
-                        <span class="wb-badge"><i class="fas fa-seedling"></i> Hỗ trợ 24/7</span>
+                        <span class="wb-badge"><i class="fas fa-bolt"></i> Cài đặt nhanh</span>
+                        <span class="wb-badge"><i class="fas fa-seedling"></i> Gói Lite 29.000đ</span>
                     </div>
                 </div>
 
@@ -1063,13 +1307,10 @@
                         <form class="auth-form" id="registerForm">
                             <div class="form-group">
                                 <label class="form-label" for="registerUsername"><i class="fas fa-user"></i> Tên đăng nhập</label>
-                                <input type="text" id="registerUsername" class="form-input" placeholder="Chọn tên đăng nhập (chữ và số, tối thiểu 6 ký tự)" required>
-                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-                                    <i class="fas fa-info-circle"></i> Tên đăng nhập không được chứa ký tự đặc biệt
-                                </div>
+                                <input type="text" id="registerUsername" class="form-input" placeholder="Chọn tên đăng nhập" required>
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="registerEmail"><i class="fas fa-envelope"></i> Gmail (khôi phục mật khẩu)</label>
+                                <label class="form-label" for="registerEmail"><i class="fas fa-envelope"></i> Email</label>
                                 <input type="email" id="registerEmail" class="form-input" placeholder="Nhập email của bạn" required>
                             </div>
                             <div class="form-group">
@@ -1127,7 +1368,7 @@
                     </div>
                     <div class="hero-name" id="userName">Người dùng</div>
                     <div class="hero-badge free" id="userBadge">
-                        <i class="fas fa-user"></i> <span>Gói cơ bản</span>
+                        <i class="fas fa-user"></i> <span>Miễn phí</span>
                     </div>
                 </div>
 
@@ -1146,7 +1387,7 @@
                             <span class="info-value" id="userCreatedDate">—</span>
                         </div>
                         <div class="info-row" id="vipExpiryInfo" style="display:none;">
-                            <span class="info-label"><i class="fas fa-crown"></i> Ngày hết hạn gói</span>
+                            <span class="info-label"><i class="fas fa-crown"></i> Ngày hết hạn VIP</span>
                             <span class="info-value">
                                 <span id="vipExpiryDate">—</span>
                                 <span id="vipStatusText" class="expiry-status"></span>
@@ -1178,7 +1419,7 @@
                             <i class="fas fa-key"></i> Đổi mật khẩu
                         </button>
                         <button class="action-btn upgrade" id="upgradeBtn" style="display:none;">
-                            <i class="fas fa-crown"></i> Xem gói nâng cao
+                            <i class="fas fa-crown"></i> Nâng cấp VIP
                         </button>
                         <button class="action-btn refresh" id="refreshBtn">
                             <i class="fas fa-sync-alt"></i> Làm mới
@@ -1192,7 +1433,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer - Giữ nguyên từ phiên bản IPA -->
     <footer class="page-footer">
         <div class="container">
             <div class="footer-content">
@@ -1298,7 +1539,7 @@
     </div>
 
     <script>
-        // DOM refs
+        // DOM Elements
         const authTabs = document.querySelectorAll('.auth-tab');
         const authForms = document.querySelectorAll('.auth-form');
         const loginForm = document.getElementById('loginForm');
@@ -1342,7 +1583,7 @@
         const vipUpcomingMessage = document.getElementById('vipUpcomingMessage');
         const vipExpiredMessage = document.getElementById('vipExpiredMessage');
 
-        let autoRefreshInterval = null;
+        // State variables
         let lastRefreshTime = null;
         let alertShownThisSession = false;
 
@@ -1432,7 +1673,7 @@
                 const saved = localStorage.getItem('theme');
                 this.setTheme(saved === 'dark' ? 'dark' : 'light');
                 if (!saved) localStorage.setItem('theme', 'light');
-                this.themeToggle.addEventListener('click', e => this.toggleTheme(e));
+                if (this.themeToggle) this.themeToggle.addEventListener('click', (e) => this.toggleTheme(e));
             }
             setTheme(theme) {
                 const isDark = theme === 'dark';
@@ -1447,14 +1688,15 @@
                 this.createRippleEffect(e);
             }
             updateThemeIcon(isDark) {
+                if (!this.themeToggle) return;
                 const sun = this.themeToggle.querySelector('.sun-icon');
                 const moon = this.themeToggle.querySelector('.moon-icon');
                 if (isDark) {
-                    sun.style.opacity = '0'; sun.style.transform = 'rotate(90deg) scale(0.5)';
-                    moon.style.opacity = '1'; moon.style.transform = 'rotate(0deg) scale(1)';
+                    if (sun) { sun.style.opacity = '0'; sun.style.transform = 'rotate(90deg) scale(0.5)'; }
+                    if (moon) { moon.style.opacity = '1'; moon.style.transform = 'rotate(0deg) scale(1)'; }
                 } else {
-                    sun.style.opacity = '1'; sun.style.transform = 'rotate(0deg) scale(1)';
-                    moon.style.opacity = '0'; moon.style.transform = 'rotate(-90deg) scale(0.5)';
+                    if (sun) { sun.style.opacity = '1'; sun.style.transform = 'rotate(0deg) scale(1)'; }
+                    if (moon) { moon.style.opacity = '0'; moon.style.transform = 'rotate(-90deg) scale(0.5)'; }
                 }
             }
             updateMetaThemeColor(isDark) {
@@ -1477,37 +1719,9 @@
                 const existing = btn.getElementsByClassName('ripple')[0];
                 if (existing) existing.remove();
                 btn.appendChild(circle);
-                setTimeout(() => { if (circle.parentNode === btn) btn.removeChild(circle); }, 600);
-            }
-        }
-
-        // Auto Refresh Functions
-        function startAutoRefresh(email) {
-            if (!email) return;
-            if (autoRefreshInterval) clearInterval(autoRefreshInterval);
-            performAutoRefresh(email);
-            autoRefreshInterval = setInterval(() => performAutoRefresh(email), 5000);
-        }
-
-        function stopAutoRefresh() {
-            if (autoRefreshInterval) {
-                clearInterval(autoRefreshInterval);
-                autoRefreshInterval = null;
-            }
-        }
-
-        async function performAutoRefresh(email) {
-            try {
-                const res = await fetch(`${CONFIG.GOOGLE_SCRIPT_URL}?action=autoRefreshUser&email=${encodeURIComponent(email)}`);
-                const result = await res.json();
-                if (result.success && result.autoRefreshed) {
-                    updateUserUI(result.data);
-                    localStorage.setItem('currentUser', JSON.stringify(result.data));
-                    lastRefreshTime = new Date().toLocaleTimeString('vi-VN');
-                    lastRefreshTimeElement.textContent = lastRefreshTime;
-                }
-            } catch (e) {
-                console.error('Auto refresh error:', e);
+                setTimeout(() => {
+                    if (circle.parentNode === btn) btn.removeChild(circle);
+                }, 600);
             }
         }
 
@@ -1547,32 +1761,32 @@
         }
 
         function getUserStatus(userData) {
-            if (!userData) return { status: 'free', displayPackage: 'Gói cơ bản', originalPackage: 'free' };
+            if (!userData) return { status: 'free', displayPackage: 'Miễn phí', originalPackage: 'free' };
             
             const packageType = userData.packageType || 'free';
             const vipExpiry = userData.vipExpiry;
             
             if (packageType === 'free') {
-                return { status: 'free', displayPackage: 'Gói cơ bản', originalPackage: 'free' };
+                return { status: 'free', displayPackage: 'Miễn phí', originalPackage: 'free' };
             }
             
             if (!vipExpiry) {
-                return { status: 'expired', displayPackage: 'Gói cơ bản', originalPackage: packageType };
+                return { status: 'expired', displayPackage: 'Miễn phí', originalPackage: packageType };
             }
             
             const daysRemaining = calculateRemainingDays(vipExpiry);
             
             if (daysRemaining === null) {
-                return { status: 'expired', displayPackage: 'Gói cơ bản', originalPackage: packageType };
+                return { status: 'expired', displayPackage: 'Miễn phí', originalPackage: packageType };
             }
             
             if (daysRemaining >= 0) {
                 const packageNames = {
                     'lite': 'Lite',
-                    'trial': 'Dùng thử',
-                    'basic': 'Cơ bản',
+                    'trial': 'Trial',
+                    'basic': 'Basic',
                     'plus': 'Plus',
-                    'premium': 'Nâng cao'
+                    'premium': 'Premium'
                 };
                 return { 
                     status: 'active', 
@@ -1580,7 +1794,7 @@
                     originalPackage: packageType 
                 };
             } else {
-                return { status: 'expired', displayPackage: 'Gói cơ bản', originalPackage: packageType };
+                return { status: 'expired', displayPackage: 'Miễn phí', originalPackage: packageType };
             }
         }
 
@@ -1594,11 +1808,13 @@
             document.getElementById('userEmail').textContent = userData.email || '—';
             document.getElementById('userCreatedDate').textContent = formatDate(userData.createdDate) || '—';
             
+            // Update avatar
+            document.getElementById('userAvatar').innerHTML = `<img src="https://vsacheat.com/img/logo_profile_vsacheat.gif" alt="Avatar">`;
+            
             // Update badge
             const badge = document.getElementById('userBadge');
             let icon = 'fas fa-user';
             let cls = 'free';
-            let displayText = userStatus.displayPackage;
             
             if (userStatus.status === 'active') {
                 const pkg = userStatus.originalPackage;
@@ -1609,7 +1825,7 @@
                 else if (pkg === 'premium') { icon = 'fas fa-crown'; cls = 'premium'; }
             }
             
-            badge.innerHTML = `<i class="${icon}"></i><span>${displayText}</span>`;
+            badge.innerHTML = `<i class="${icon}"></i><span>${userStatus.displayPackage}</span>`;
             badge.className = `hero-badge ${cls}`;
             
             // Update VIP info
@@ -1670,8 +1886,7 @@
             
             const userStatus = getUserStatus(userData);
             
-            // Free account alert
-            if (userStatus.displayPackage === 'Gói cơ bản') {
+            if (userStatus.displayPackage === 'Miễn phí') {
                 showAlert('freeAccountAlert');
                 return;
             }
@@ -1690,13 +1905,13 @@
                 if (daysRemaining !== null) {
                     if (daysRemaining < 0) {
                         const overdueDays = Math.abs(daysRemaining);
-                        vipExpiredMessage.textContent = `Tài khoản gói nâng cao của bạn đã hết hạn ${overdueDays} ngày. Cập nhật trạng thái gói để lấy lại quyền lợi:`;
+                        vipExpiredMessage.textContent = `Tài khoản VIP của bạn đã hết hạn ${overdueDays} ngày. Gia hạn ngay để lấy lại quyền lợi:`;
                         showAlert('vipExpiredAlert');
                     } else if (daysRemaining <= 7) {
                         if (daysRemaining === 0) {
-                            vipUpcomingMessage.textContent = `Tài khoản gói nâng cao của bạn sẽ hết hạn hôm nay. Cập nhật trạng thái gói để không bị gián đoạn:`;
+                            vipUpcomingMessage.textContent = `Tài khoản VIP của bạn sẽ hết hạn hôm nay. Gia hạn ngay để không bị gián đoạn:`;
                         } else {
-                            vipUpcomingMessage.textContent = `Tài khoản gói nâng cao của bạn sẽ hết hạn trong ${daysRemaining} ngày tới. Cập nhật trạng thái gói để nhận nhiều lợi ích hơn:`;
+                            vipUpcomingMessage.textContent = `Tài khoản VIP của bạn sẽ hết hạn trong ${daysRemaining} ngày tới. Gia hạn ngay để nhận ưu đãi đặc biệt:`;
                         }
                         showAlert('vipUpcomingAlert');
                     }
@@ -1704,17 +1919,18 @@
             }
         }
 
-        async function loadUserInfo(userData, isQuickLoad) {
+        async function loadUserInfo(userData) {
             const userStatus = getUserStatus(userData);
             
             document.getElementById('userName').textContent = userData.username || 'Người dùng';
             document.getElementById('userEmail').textContent = userData.email || '—';
             document.getElementById('userCreatedDate').textContent = formatDate(userData.createdDate) || '—';
             
+            document.getElementById('userAvatar').innerHTML = `<img src="https://vsacheat.com/img/logo_profile_vsacheat.gif" alt="Avatar">`;
+            
             const badge = document.getElementById('userBadge');
             let icon = 'fas fa-user';
             let cls = 'free';
-            let displayText = userStatus.displayPackage;
             
             if (userStatus.status === 'active') {
                 const pkg = userStatus.originalPackage;
@@ -1725,7 +1941,7 @@
                 else if (pkg === 'premium') { icon = 'fas fa-crown'; cls = 'premium'; }
             }
             
-            badge.innerHTML = `<i class="${icon}"></i><span>${displayText}</span>`;
+            badge.innerHTML = `<i class="${icon}"></i><span>${userStatus.displayPackage}</span>`;
             badge.className = `hero-badge ${cls}`;
             
             if (userData.vipExpiry && userData.vipExpiry !== '') {
@@ -1788,15 +2004,13 @@
             setTimeout(() => {
                 checkAndShowAlert(userData);
             }, 300);
-            
-            if (userData.email) startAutoRefresh(userData.email);
         }
 
         async function refreshUserInfo(userData) {
             try {
                 const res = await fetch(`${CONFIG.GOOGLE_SCRIPT_URL}?action=autoRefreshUser&email=${encodeURIComponent(userData.email)}`);
                 const result = await res.json();
-                if (result.success) {
+                if (result.success && result.data) {
                     localStorage.setItem('currentUser', JSON.stringify(result.data));
                     updateUserUI(result.data);
                     lastRefreshTime = new Date().toLocaleTimeString('vi-VN');
@@ -1831,11 +2045,6 @@
 
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-
-        function isValidUsername(username) {
-            const usernameRegex = /^[a-zA-Z0-9]+$/;
-            return username && username.length >= 6 && usernameRegex.test(username);
         }
 
         async function generateHumanToken() {
@@ -1893,12 +2102,11 @@
                 const result = await res.json();
                 if (result.success) {
                     localStorage.setItem('currentUser', JSON.stringify(result.data));
-                    await loadUserInfo(result.data, false);
+                    await loadUserInfo(result.data);
                     const us = getUserStatus(result.data);
                     showSuccess(us.status === 'expired'
-                        ? 'Đăng nhập thành công! Gói nâng cao đã hết hạn. Vui lòng xem các gói để cập nhật.'
+                        ? 'Đăng nhập thành công! Tài khoản VIP đã hết hạn. Vui lòng nâng cấp.'
                         : 'Đăng nhập thành công!');
-                    startAutoRefresh(result.data.email);
                 } else {
                     throw new Error(result.message || 'Đăng nhập thất bại');
                 }
@@ -1918,36 +2126,26 @@
             const password = document.getElementById('registerPassword').value.trim();
             const confirmPassword = document.getElementById('registerConfirmPassword').value.trim();
             
-            if (!isValidUsername(username)) {
-                showError('Tên đăng nhập không hợp lệ! Chỉ được dùng chữ cái (a-z, A-Z) và số (0-9), không dấu, không khoảng trắng, tối thiểu 6 ký tự.');
+            if (!username || !email || !password || !confirmPassword) {
+                showError('Vui lòng điền đầy đủ thông tin'); return;
+            }
+            if (password !== confirmPassword) {
+                showError('Mật khẩu xác nhận không khớp'); return;
+            }
+            if (password.length < 6) {
+                showError('Mật khẩu phải có ít nhất 6 ký tự'); return;
+            }
+            if (!isValidEmail(email)) {
+                showError('Email không hợp lệ'); return;
+            }
+            if (!privacyConsent.checked) {
+                showError('Vui lòng đồng ý với Chính Sách Bảo Mật và Điều Khoản Dịch Vụ'); return;
+            }
+            if (!captchaVerified) {
+                showError('Vui lòng xác minh bạn không phải robot!');
+                captchaBox.style.borderColor = 'var(--danger)';
+                setTimeout(() => captchaBox.style.borderColor = '', 2000);
                 return;
-            }
-            
-            if (!username || !email || !password || !confirmPassword) { 
-                showError('Vui lòng điền đầy đủ thông tin'); 
-                return; 
-            }
-            if (password !== confirmPassword) { 
-                showError('Mật khẩu xác nhận không khớp'); 
-                return; 
-            }
-            if (password.length < 6) { 
-                showError('Mật khẩu phải có ít nhất 6 ký tự'); 
-                return; 
-            }
-            if (!isValidEmail(email)) { 
-                showError('Email không hợp lệ'); 
-                return; 
-            }
-            if (!privacyConsent.checked) { 
-                showError('Vui lòng đồng ý với Chính Sách Bảo Mật và Điều Khoản Dịch Vụ'); 
-                return; 
-            }
-            if (!captchaVerified) { 
-                showError('Vui lòng xác minh bạn không phải robot!'); 
-                captchaBox.style.borderColor = 'var(--danger)'; 
-                setTimeout(() => captchaBox.style.borderColor = '', 2000); 
-                return; 
             }
             
             registerBtn.innerHTML = '<div class="loading"></div> Đang đăng ký...';
@@ -1963,24 +2161,23 @@
                 const result = await res.json();
                 if (result.success) {
                     showSuccess('Đăng ký thành công! Vui lòng đăng nhập.');
-                    authTabs[0].click(); 
-                    registerForm.reset(); 
+                    authTabs[0].click();
+                    registerForm.reset();
                     privacyConsent.checked = false;
                     resetCaptcha();
                 } else {
                     throw new Error(result.message);
                 }
-            } catch (err) { 
-                showError(err.message || 'Đăng ký thất bại'); 
-            } finally { 
-                registerBtn.innerHTML = '<i class="fas fa-user-plus"></i> Đăng ký tài khoản'; 
-                registerBtn.disabled = false; 
+            } catch (err) {
+                showError(err.message || 'Đăng ký thất bại');
+            } finally {
+                registerBtn.innerHTML = '<i class="fas fa-user-plus"></i> Đăng ký tài khoản';
+                registerBtn.disabled = false;
             }
-            logLegalActivity('register_attempt', { email: document.getElementById('registerEmail').value.substring(0,3)+'***', consented: privacyConsent.checked });
+            logLegalActivity('register_attempt', { email: email.substring(0,3)+'***', consented: privacyConsent.checked });
         });
 
         logoutBtn.addEventListener('click', function() {
-            stopAutoRefresh();
             localStorage.removeItem('currentUser');
             authSection.style.display = 'block';
             userInfo.style.display = 'none';
@@ -2100,15 +2297,13 @@
             const currentUser = getCurrentUser();
             
             if (currentUser) {
-                loadUserInfo(currentUser, true);
+                loadUserInfo(currentUser);
                 refreshUserInfo(currentUser);
             } else {
                 authSection.style.display = 'block';
                 userInfo.style.display = 'none';
                 quickLoading.style.display = 'none';
             }
-            
-            window.addEventListener('beforeunload', stopAutoRefresh);
         });
 
         document.querySelectorAll('.footer-link').forEach(link => {
