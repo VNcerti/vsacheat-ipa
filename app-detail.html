@@ -275,7 +275,7 @@
             opacity: 0.8;
         }
         
-        /* Description Section */
+        /* Description Section - FIXED: hiển thị full nội dung */
         .description-section {
             margin-bottom: 25px;
         }
@@ -293,14 +293,20 @@
             border-radius: 10px;
             border: 1px solid var(--border);
             font-size: 12.5px;
-            line-height: 1.4;
+            line-height: 1.5;
+            /* QUAN TRỌNG: Xóa -webkit-line-clamp để hiển thị full nội dung */
+            display: block;
+            overflow: visible;
+            height: auto;
+            max-height: none;
+            min-height: auto;
         }
         
         .description-item {
             display: flex;
             align-items: flex-start;
             gap: 8px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         
         .description-item:last-child {
@@ -317,7 +323,7 @@
             background-repeat: no-repeat;
             background-color: transparent;
             flex-shrink: 0;
-            margin-top: 2px;
+            margin-top: 1px;
         }
         
         .check-icon-container i {
@@ -326,7 +332,7 @@
         
         .description-text {
             color: var(--text-secondary);
-            line-height: 1.4;
+            line-height: 1.5;
             font-size: 12.5px;
             flex: 1;
         }
@@ -771,7 +777,7 @@
         }
         
         [data-theme="dark"] .debug-toggle {
-            color: #1e293b;
+            color: #0e172a;
         }
         
         /* Auto Refresh Notification */
@@ -796,7 +802,7 @@
             opacity: 1;
         }
         
-        /* ===== SEARCH RESULTS STYLES - ĐỒNG BỘ HOÀN TOÀN VỚI INDEX.HTML ===== */
+        /* ===== SEARCH RESULTS STYLES ===== */
         .search-modal {
             display: none;
             position: fixed;
@@ -877,7 +883,6 @@
             overflow-y: auto;
         }
 
-        /* Search Results App Card - ĐỒNG BỘ HOÀN TOÀN VỚI INDEX.HTML */
         .search-results .app-card {
             background: var(--surface);
             border-radius: 12px;
@@ -890,17 +895,12 @@
             gap: 12px;
             height: 110px;
             cursor: pointer;
-            position: relative;
             margin-bottom: 12px;
         }
 
         .search-results .app-card:hover {
             transform: translateY(-2px);
             box-shadow: var(--card-shadow-hover);
-        }
-
-        .search-results .app-card:active {
-            transform: translateY(-1px);
         }
 
         .search-results .app-logo {
@@ -925,7 +925,6 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 4px;
-            gap: 0;
         }
 
         .search-results .app-info {
@@ -952,17 +951,6 @@
             margin-bottom: 1px;
         }
 
-        .search-results .app-version-meta .app-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .search-results .app-version-meta .app-meta-item i {
-            font-size: 9px;
-            width: 12px;
-        }
-
         .search-results .app-meta {
             display: flex;
             gap: 12px;
@@ -971,23 +959,10 @@
             margin-bottom: 2px;
         }
 
-        .search-results .app-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .search-results .app-meta-item i {
-            font-size: 9px;
-            width: 12px;
-        }
-
         .search-results .app-actions {
             display: flex;
             justify-content: flex-end;
             margin-top: 4px;
-            position: relative;
-            z-index: 2;
         }
 
         .search-results .index-download-btn {
@@ -1006,17 +981,11 @@
             justify-content: center;
             background: #EEEEEF;
             color: #007AFF;
-            margin-left: auto;
         }
 
         [data-theme="dark"] .search-results .index-download-btn {
             background: rgba(0, 122, 255, calc(1.33 * 0.06));
             color: #148eff;
-        }
-
-        .search-results .index-download-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.15);
         }
 
         .search-results .app-description-check {
@@ -1025,7 +994,6 @@
             border: none;
             font-size: 11px;
             line-height: 1.3;
-            margin-top: -4px;
         }
 
         .search-results .description-item {
@@ -1265,13 +1233,13 @@
             .app-description-check {
                 padding: 10px;
                 font-size: 11.5px;
-                line-height: 1.35;
+                line-height: 1.45;
                 border-radius: 8px;
             }
             
             .description-item {
                 gap: 6px;
-                margin-bottom: 5px;
+                margin-bottom: 6px;
             }
             
             .check-icon-container {
@@ -1282,7 +1250,7 @@
             
             .description-text {
                 font-size: 11.5px;
-                line-height: 1.35;
+                line-height: 1.45;
             }
             
             .screenshots-section {
@@ -1384,7 +1352,6 @@
                     </div>
                 </a>
                 <div class="user-actions">
-                    <!-- Nút quay lại thay thế cho theme toggle và telegram -->
                     <a href="index.html" class="icon-btn back-btn" style="text-decoration: none;">
                         <i class="fas fa-arrow-left"></i>
                     </a>
@@ -1434,11 +1401,11 @@
     </main>
 
     <!-- ============================================ -->
-    <!-- FLOATING PILL BOTTOM NAVIGATION - GIỐNG INDEX.HTML WKWEBVIEW -->
+    <!-- FLOATING PILL BOTTOM NAVIGATION -->
     <!-- ============================================ -->
     <nav class="floating-nav" role="navigation" aria-label="Main navigation">
         <div class="nav-pill">
-            <a href="index.html" class="nav-pill-item active" data-view="home" data-target="home" aria-label="Ứng dụng" aria-current="page">
+            <a href="index.html" class="nav-pill-item" data-view="home" data-target="home" aria-label="Ứng dụng">
                 <span class="nav-pill-icon"><i class="fas fa-layer-group"></i></span>
                 <span class="nav-pill-label">Ứng dụng</span>
                 <span class="nav-ripple"></span>
@@ -1471,7 +1438,7 @@
     </nav>
     <!-- ============================================ -->
 
-    <!-- Search Modal - GIỐNG Y HỆT INDEX.HTML WKWEBVIEW -->
+    <!-- Search Modal -->
     <div class="search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
@@ -1499,6 +1466,7 @@
         // Quản lý chế độ sáng/tối
         class ThemeManager {
             constructor() {
+                this.themeToggle = document.getElementById('themeToggle');
                 this.htmlElement = document.documentElement;
                 this.init();
             }
@@ -1532,7 +1500,7 @@
             }
         }
 
-        // Floating Nav Controller - GIỐNG INDEX.HTML
+        // Floating Nav Controller
         class FloatingNavController {
             constructor() {
                 this.navItems = document.querySelectorAll('.nav-pill-item');
@@ -1598,7 +1566,7 @@
             }
         }
 
-        // Search Manager - GIỐNG Y HỆT INDEX.HTML
+        // Search Manager
         class SearchManager {
             constructor() {
                 this.allApps = [];
@@ -1656,14 +1624,12 @@
                     return;
                 }
                 
-                // Tìm kiếm chính xác từ đầu tên ứng dụng
                 const filteredApps = this.allApps.filter(app => {
                     const appName = app.name.toLowerCase();
                     const searchTermLower = searchTerm.toLowerCase();
                     return appName.startsWith(searchTermLower);
                 });
                 
-                // Sắp xếp theo ID giảm dần
                 filteredApps.sort((a, b) => {
                     const idA = parseInt(a.id) || 0;
                     const idB = parseInt(b.id) || 0;
@@ -1736,14 +1702,12 @@
                     </div>
                 `;
                 
-                // Click vào toàn bộ card
                 appCard.addEventListener('click', (e) => {
                     if (!e.target.closest('.index-download-btn')) {
                         window.location.href = detailUrl;
                     }
                 });
                 
-                // Click vào nút NHẬN
                 const downloadBtn = appCard.querySelector('.index-download-btn');
                 if (downloadBtn) {
                     downloadBtn.addEventListener('click', (e) => {
